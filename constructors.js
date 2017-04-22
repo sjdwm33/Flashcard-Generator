@@ -1,6 +1,9 @@
 var BasicCard = require("./BasicCard");
 var ClozeCard = require("./ClozeCard");
+var fs = require("fs");
 var inquirer = require("inquirer");
+
+// var CardCollection = [];
 
 var createBasic = function(){
 
@@ -13,9 +16,14 @@ var createBasic = function(){
 			message: "What is the answer to the question?"
 		}
 	]).then(function(answers) {
+		
 		var newBasicCard = new BasicCard(answers.front, answers.back);
-		console.log(newBasicCard);
-		//NEED THIS LOGGED AND SAVED SOMEWHERE TO BE USED LATER
+
+		// CardCollection.push(newBasicCard);
+				
+		
+		console.log("Created card: " + newBasicCard.front, newBasicCard.back);
+		
 	})
 }
 
@@ -41,8 +49,9 @@ var createCloze = function(){
 			console.log("Error, your cloze statement isn't in your full statement");
 			}
 			else{
-				console.log(newClozeCard);
-				//NEED THIS LOGGED AND SAVED SOMEWHERE TO BE USED LATER  NPM INIT?
+				// CardCollection.push(newClozeCard);
+				console.log("Created card: " + newClozeCard.partial + ", " + newClozeCard.deletion);
+		
 			}
 		};
 		checkStatements();
@@ -66,16 +75,25 @@ var createCard = function(){
 	})
 };
 
-createCard();
-//IF STATEMENT TO RUN CARDS
-// function CreateCard(){
-// 	var type = Math.floor(Math.random()),
+createCard()
 
-// 	if (type === 1) {
-// 		createCloze();
-// 	}
-// 	else {
-// 		createBasic();
-// 	}
-// }
+//***This isn't working properly for me yet and doesn't seem to be required?
+
+// function runCards(){
+// 	inquirer.prompt([
+// 	{
+// 		name: "mode",
+// 		message: "Do you want to make flashcards or run flashcards?"
+// 	}]).then(function(answer) {
+// 		if (answer === "make flashcards"){
+// 			createCard();
+// 		}
+// 		else if (answer === "run flashcards"){
+
+// 		}
+// 	};
+// };
+
+
+// runCards();
 
